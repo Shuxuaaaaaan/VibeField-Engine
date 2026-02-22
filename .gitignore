@@ -1,0 +1,22 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+.venv/
+env/
+venv/
+ENV/
+
+# Keep directory structure
+!data/resources/.gitkeep
+!data/results/.gitkeep
+
+# IDEs
+.idea/
+.vscode/
+*.swp
+
+# uv
+uv.lock

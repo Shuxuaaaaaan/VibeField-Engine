@@ -1,0 +1,18 @@
+[project]
+name = "vibefield-engine"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "click>=8.3.1",
+    "numcodecs>=0.16.5",
+    "numpy>=2.4.2",
+    "opencv-python>=4.13.0.92",
+    "tqdm>=4.67.3",
+    "zarr>=3.1.5",
+]
+
+[project.scripts]
+vibefield-engine = "cli:main"
+
