@@ -601,6 +601,10 @@ class AnalysisMainWindow(QMainWindow):
             d_dv = draw_v[draw_mask]
             d_mags = inst_mags[draw_mask]
             
+            # Extract unscaled actual displacements for anchoring
+            d_inst_u = inst_u[draw_mask]
+            d_inst_v = inst_v[draw_mask]
+            
             intensities = np.clip(d_mags / od['p98_amp'], 0.0, 1.0)
             color_idxs = (intensities * 255).astype(int)
             
@@ -608,14 +612,20 @@ class AnalysisMainWindow(QMainWindow):
             for i in range(len(d_cx)):
                 cx = d_cx[i]
                 cy = d_cy[i]
+                
+                # We use the unscaled physiological sub-pixel displacement for anchor
+                actual_u = d_inst_u[i]
+                actual_v = d_inst_v[i]
+                
+                # Using round to be slightly more accurate than int
+                cx_dyn = int(round(cx + actual_u))
+                cy_dyn = int(round(cy + actual_v))
+                
                 du = d_du[i]
                 dv = d_dv[i]
                 
-                cx_dyn = int(cx + du)
-                cy_dyn = int(cy + dv)
-                
-                end_x = int(cx_dyn + du * 1.5)
-                end_y = int(cy_dyn + dv * 1.5)
+                end_x = int(round(cx_dyn + du * 1.5))
+                end_y = int(round(cy_dyn + dv * 1.5))
                 
                 color = od['color_lut'][color_idxs[i]]
                 
@@ -756,9 +766,9 @@ class AnalysisMainWindow(QMainWindow):
             if 'patch_size' in root.attrs:
                 patch_size = root.attrs['patch_size']
             else:
-                patch_size_h = orig_H // new_H
-                patch_size_w = orig_W // new_W
-                patch_size = min(patch_size_h, patch_size_w)
+                patch_size_h = int(np.ceil(orig_H / float(new_H)))
+                patch_size_w = int(np.ceil(orig_W / float(new_W)))
+                patch_size = max(patch_size_h, patch_size_w)
                 if patch_size == 0: patch_size = 1
             
             centers_x = (x_idxs * patch_size + patch_size / 2.0).astype(float)
