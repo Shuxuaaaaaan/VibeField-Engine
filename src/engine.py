@@ -190,4 +190,12 @@ def process_video(
     output_filename = f"{base_name_no_ext}.zarr"
     output_fullpath = os.path.join(output_dir, output_filename)
     
-    save_to_zarr(output_fullpath, result_map)
+    meta = {
+        'patch_size': int(patch_size),
+        'fps': float(fps),
+        'freq_min': float(freq_min),
+        'freq_max': float(freq_max),
+        'saliency_threshold': float(saliency_threshold)
+    }
+    
+    save_to_zarr(output_fullpath, result_map, meta=meta)

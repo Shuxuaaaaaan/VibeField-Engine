@@ -9,6 +9,8 @@ dependencies = [
     "numcodecs>=0.16.5",
     "numpy>=2.4.2",
     "opencv-python>=4.13.0.92",
+    "pyqt6>=6.10.2",
+    "pyqtgraph>=0.14.0",
     "tqdm>=4.67.3",
     "zarr>=3.1.5",
 ]

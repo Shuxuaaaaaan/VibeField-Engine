@@ -49,6 +49,18 @@ uv run python src/viewer.py -i data/resources/input_video.mp4 -z data/results/in
 - Blue arrows display the instantaneous vibration movement reconstructed from the extracted complex frequency domain components.
 - Press `q` or `ESC` to close the viewer.
 
+### GUI Analysis Tool
+
+For a fully integrated graphical user interface that combining global computations, vector overlays, and localized Region of Interest (ROI) tracking (with waveform and orbit plots), use the `analysis.py` tool:
+
+```bash
+uv run src/analysis.py
+```
+- Select a video from the list (sourced from `data/resources/`).
+- Use the right panel to execute **Global Computing** to generate the `.zarr` file.
+- Toggle **Overlay Rendering** to preview vector fields directly dynamically.
+- Click **Add ROI (+)** to draw localized tracking regions and view interactive pyqtgraph real-time charts (`X(t)`, `Y(t)`).
+
 ---
 <a name="chinese"></a>
 ## 🇨🇳 中文
@@ -94,4 +106,14 @@ uv run python src/viewer.py -i data/resources/input_video.mp4 -z data/results/in
 - 程序会弹出一个播放窗口与原视频同步播放。
 - 红色的点代表具有活跃震动的特征块中心。
 - 蓝色的动态箭头则利用提取到的时域频率与相位信息，实时重建并放大显示其物理运动轨迹。
-- 按下 `q` 或 `ESC` 键可退出播放器。
+### 综合可视化分析工具 (GUI Analysis Tool)
+
+如果您希望拥有一个集成全局计算、动态矢量叠加渲染以及局部特征追踪（包含波形图与轨道图分析）的图形界面，请使用新加入的 `analysis.py` 工具：
+
+```bash
+uv run src/analysis.py
+```
+- 从列表中选择视频（视频来源于 `data/resources/`）。
+- 使用右侧面板进行 **全局计算 (Global Computing)**，后台生成 `.zarr` 矢量文件。
+- 勾选 **叠加渲染 (Overlay Rendering)** 即可在播放原视频时预览流体矢量动效。
+- 点击 **Add ROI (+)** 在画面中绘制特定的兴趣追踪区域，可在随后生成的列表中打开交互式的 pyqtgraph 实时追踪图表界面（如 `X(t)`、`Y(t)` 曲线及震动轨道）。

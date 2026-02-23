@@ -3,7 +3,7 @@ from numcodecs import Blosc
 import os
 import numpy as np
 
-def save_to_zarr(output_path: str, data: np.ndarray):
+def save_to_zarr(output_path: str, data: np.ndarray, meta: dict = None):
     """
     Saves the extracted 4D tensor (T, H, W, C) into Zarr format.
     C usually contains 5 channels: [Dominant_Freq, Amp_u, Amp_v, Phase_u, Phase_v].
@@ -33,4 +33,6 @@ def save_to_zarr(output_path: str, data: np.ndarray):
     )
     
     root[:] = data
+    if meta is not None:
+        root.attrs.update(meta)
     print(f"Successfully saved results to {output_path} (Shape: {root.shape})")
