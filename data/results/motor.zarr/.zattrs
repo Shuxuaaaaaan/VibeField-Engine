@@ -1,7 +1,7 @@
 {
   "patch_size": 2,
   "fps": 119.0,
-  "freq_min": 1.0,
+  "freq_min": 10.0,
   "freq_max": 120.0,
-  "saliency_threshold": 1e-05
+  "saliency_threshold": 0.0001
 }
